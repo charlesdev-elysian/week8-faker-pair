@@ -29,13 +29,15 @@ echo '<!DOCTYPE html>
         </thead>
         <tbody>';
 
-for ($i = 1; $i <= 10; $i++) {
-    $name = htmlspecialchars($faker->name);
-    $email = htmlspecialchars($faker->unique()->safeEmail);
-    $username = htmlspecialchars($faker->userName);
-    $password = password_hash($faker->password, PASSWORD_BCRYPT); // Secure password hashing
-    $accountCreated = $faker->dateTimeBetween('-2 years', 'now')->format('Y-m-d H:i:s');
-
+        for ($i = 1; $i <= 10; $i++) {
+            $name = htmlspecialchars($faker->name);
+            $email = htmlspecialchars($faker->unique()->safeEmail);
+            $username = explode('@', $email)[0]; // Extract first part of email
+            $password = password_hash($faker->password, PASSWORD_BCRYPT); // Secure password hashing
+            $accountCreated = $faker->dateTimeBetween('-2 years', 'now')->format('Y-m-d H:i:s');
+    
+        
+        
     echo "<tr>
             <td>{$i}</td>
             <td>{$name}</td>
